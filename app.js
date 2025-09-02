@@ -92,9 +92,9 @@ const buildPage = async (pokemons) => {
         
 
         const pokeImg = document.createElement("img")
-        pokeImg.src = `./images/${pokemonData.name}.png`
-        pokeImg.width = "150px"
-        pokeImg.height = "150px"
+        pokeImg.src = `./images/${pokemon.name}.png`
+        pokeImg.width = 150;
+        pokeImg.height = 150;
         
 
         const pokemonDesc = await fetchSpecies(pokemonData.id)
