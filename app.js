@@ -120,7 +120,7 @@ const buildPage = async (pokemons) => {
 }
 
 const renderPage = async () => {
-    pokemonList = await fetchPokemons(9, (page - 1) *9)
+    pokemonList = await fetchPokemons(9,(page - 1) *9)
     await buildPage(pokemonList)
 }
 
