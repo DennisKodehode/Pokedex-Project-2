@@ -259,7 +259,7 @@ min-width: 781px;
 }
 
 .filter-viewport{
-    display: flex;
+  display: flex;
 width: 100%;
 padding: 0 36px;
 flex-direction: column;
@@ -269,10 +269,53 @@ align-items: flex-start;
 .pokemon-grid{
 display: grid;
 padding: 36px;
-row-gap: 36px;
-column-gap: 36px;
-align-self: stretch;
-grid-template-rows: repeat(3, minmax(0, 1fr));
-grid-template-columns: repeat(3, minmax(0, 1fr));    
+gap: 36px;
+grid-template-columns: repeat(3, minmax(0, 1fr)); 
+grid-auto-rows: 1fr;
+grid-auto-flow: row;   
 }
 
+.page-btn{
+  display: flex;
+padding: 8px 16px;
+flex-direction: column;
+align-items: flex-start;
+gap: 10px;
+color: var(--primary-accent);
+}
+
+.card{
+  display: flex;
+padding: 12px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 24px;
+border-radius: 8px;
+border: 1px solid var(--type-water);
+background: var(--neutral-200);
+box-shadow: 0 4px 12px 0 rgba(99, 144, 240, 0.60);
+}
+
+.fav-wrapper {
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+align-self: stretch;  
+}
+
+.fav-img {
+  width: 30px;
+height: 28px;
+aspect-ratio: 15/14;
+}
+
+.page-btns-wrapper {
+  display: flex;
+  
+  
+padding: 0 36px;
+justify-content: space-between;
+align-items: center;
+align-self: stretch;
+}
