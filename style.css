@@ -1,0 +1,278 @@
+:root {
+  /* Primary */
+  --primary-accent: #00FF9F;
+  --primary-glow: #00C47A;
+  --primary-hover: #00B36B;
+
+  /* Secondary */
+  --secondary-accent: #00D8FF;
+  --secondary-glow: #00D8FF;
+  --secondary-hover: #00B8D6;
+
+  /* Neutral scale */
+  --neutral-100: #0D0D0D;
+  --neutral-200: #151515;
+  --neutral-300: #1E1E1E;
+  --neutral-400: #2A2A2A;
+  --neutral-500: #3A3A3A;
+  --neutral-600: #4F4F4F;
+  --neutral-700: #666666;
+  --neutral-800: #B0B0B0;
+  --neutral-900: #E5E5E5;
+  --neutral-1000: #FFFFFF;
+
+  /* Pokémon Types */
+  --type-normal: #A8A77A;
+  --type-fire: #EE8130;
+  --type-water: #6390F0;
+  --type-grass: #7AC74C;
+  --type-electric: #F7D02C;
+  --type-ice: #96D9D6;
+  --type-fighting: #C22E28;
+  --type-poison: #A33EA1;
+  --type-ground: #E2BF65;
+  --type-flying: #A98FF3;
+  --type-psychic: #F95587;
+  --type-bug: #A6B91A;
+  --type-rock: #B6A136;
+  --type-ghost: #735797;
+  --type-dragon: #6F35FC;
+  --type-dark: #705746;
+  --type-steel: #B7B7CE;
+  --type-fairy: #D685AD;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+input[type="text"]{
+  /* remove native look */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* neutral box model */
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+
+  /* make them blend with your typography */
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+
+  /* optional UX tweaks */
+  outline: none; /* you’ll add your own focus style later */
+  resize: none; /* let CSS decide if/when to resize textarea */
+  box-shadow: none; /* Safari/iOS inner shadow */
+}
+
+/* --- Button Reset --------------------------------------------------------- */
+button,
+[type="button"],
+[type="submit"],
+[type="reset"] {
+  /* remove default appearance */
+  appearance: none;
+  -webkit-appearance: none;
+
+  /* box-model & inherited typography */
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+
+  font: inherit; /* inherit family, size, weight, line-height */
+  color: inherit; /* inherit text color */
+
+  /* optional: remove blue iOS button text */
+  text-decoration: none;
+
+  /* keep pointer cursor for non-disabled buttons */
+  cursor: pointer;
+
+  /* outline only on keyboard focus (not mouse-click) if you use :focus-visible*/
+  outline: none; /* you’ll add your own focus style later */
+}
+
+button:disabled,
+[type="button"]:disabled,
+[type="submit"]:disabled,
+[type="reset"]:disabled {
+  cursor: default;
+  opacity: 0.6; /* visibly disabled */
+}
+
+/* LINKS RESET */
+a:link,
+a:active,
+a:hover,
+a:visited {
+  text-decoration: none;
+cursor: pointer;}
+
+  ul {
+  list-style-type: none; /* Removes the bullet points */
+}
+
+
+
+body {
+display: flex;
+width: 100%;
+flex-direction: column;
+align-items: flex-start;
+background: var(--neutral-100);
+font-family: "Quantico", sans-serif;
+font-weight: 400;
+font-style: normal;
+color: var(--neutral-900);
+}
+
+/* Typography */
+h1,h2,h3,h4,h5{
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 125%;
+}
+
+h1{
+
+/* Headings/H1 */
+font-size: 44px;
+line-height: 110%; /* 48.4px */
+letter-spacing: -0.11px;
+}
+
+h2{
+/* Headings/H2 */
+font-size: 32px;  
+}
+
+h3{
+font-size: 24px;
+    
+}
+
+h4{
+font-size: 18px; 
+}
+
+h5{
+font-size: 14px;
+}
+
+header{
+display: flex;
+width: 100%;
+padding: 19px 24px;
+justify-content: space-between;
+align-items: center;    
+}
+
+nav{
+    display: flex;
+height: 30px;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+flex: 1 0 0;
+}
+
+.nav-links{
+display: flex;
+padding: 0 16px;
+justify-content: center;
+align-items: center;
+gap: 81px;
+flex: 1 0 0;}
+
+.nav-link{
+color: var(--neutral-900);
+
+/* Headings/H4 */
+font-family: "Orbitron", sans-serif;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 125%; /* 22.5px */
+}
+
+.nav-link:hover{
+color: var(--primary-accent);    
+}
+
+main{
+   display: flex;
+padding: 36px 0;
+flex-direction: column;
+justify-content: flex-end;
+align-items: center;
+gap: 36px;
+align-self: stretch; 
+}
+
+.pokedex{
+  display: flex;
+flex-direction: column;
+align-items: center;
+gap: 36px;
+align-self: stretch;  
+}
+
+#search{
+width: 35%; /* or fixed width */
+min-width: 781px;
+  padding: 10px 16px; /* manual spacing since no spacing vars yet */
+  
+  background-color: var(--neutral-300);
+  color: var(--neutral-900);
+  
+  border: 1px solid var(--neutral-400);
+  border-radius: 9999px; /* pill shape */
+  
+  font-family: "Quantico", sans-serif; /* your body font */
+  font-size: 14px;
+  
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#search::placeholder {
+  color: var(--neutral-700);
+  font-style: italic;
+}
+
+#search:focus {
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 0 2px rgba(0, 255, 159, 0.25); /* glow using primary-accent */
+}
+
+.filter-viewport{
+    display: flex;
+width: 100%;
+padding: 0 36px;
+flex-direction: column;
+align-items: flex-start;
+}
+
+.pokemon-grid{
+display: grid;
+padding: 36px;
+row-gap: 36px;
+column-gap: 36px;
+align-self: stretch;
+grid-template-rows: repeat(3, minmax(0, 1fr));
+grid-template-columns: repeat(3, minmax(0, 1fr));    
+}
+
