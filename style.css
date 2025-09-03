@@ -270,7 +270,7 @@ main {
 
 .pokemon-grid {
   display: grid;
-  width: 100%;
+  width: 90%;
   padding: 2.25rem;
   row-gap: 2.25rem;
   column-gap: 36px;
@@ -293,12 +293,13 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 2rem;
   border-radius: 8px;
   border: 1px solid var(--type-water);
   background: var(--neutral-200);
   box-shadow: 0 4px 12px 0 rgba(99, 144, 240, 0.6);
   aspect-ratio: 1.02/1;
+  position: relative;
 }
 
 .fav-wrapper {
@@ -306,6 +307,9 @@ main {
   flex-direction: column;
   align-items: flex-end;
   align-self: stretch;
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }
 
 .fav-img {
