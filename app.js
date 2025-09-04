@@ -236,15 +236,28 @@ const getPage = (pokemons, page, pageSize = 9) => {
 
 //duh
 const renderPage = async () => {
-  let filteredPokemons = pokemonsData
-  if(selectedTypes.length > 0) {
-    filteredPokemons = pokemonsData.filter(data => selectedTypes.includes(data.types[0].type.name)) && ((data.name === searchText) || (searchText === ""))
-  }
-  else {
-    filteredPokemons = pokemonsData.filter(data => (data.name === searchText) || (searchText === ""))
-  }
+  // let filteredPokemons = pokemonsData
+  // if(selectedTypes.length > 0) {
+  //   filteredPokemons = pokemonsData.filter(data => selectedTypes.includes(data.types[0].type.name)) && ((data.name === searchText) || (searchText === ""))
+  // }
+  // else {
+  //   filteredPokemons = pokemonsData.filter(data => (data.name === searchText) || (searchText === ""))
+  // }
 
-  const pokemonsOnThisPage = getPage(filteredPokemons, page, pageSize)
+  // const pokemonsOnThisPage = getPage(filteredPokemons, page, pageSize)
+  // await buildPage(pokemonsOnThisPage);
+
+  const filteredPokemons = pokemonsData.filter(pokemon => {
+    const matchesType =
+      selectedTypes.length === 0 || selectedTypes.includes(pokemon.types[0].type.name);
+
+    const matchesSearch =
+      !searchText || pokemon.name.toLowerCase().includes(searchText);
+
+    return matchesType && matchesSearch;
+  });
+
+  const pokemonsOnThisPage = getPage(filteredPokemons, page, pageSize);
   await buildPage(pokemonsOnThisPage);
 };
 
