@@ -1,7 +1,7 @@
 const pokemonGrid = document.querySelector(".pokemon-grid");
 const pageBtnsWrapper = document.querySelector(".page-btns-wrapper");
-const filterViewport = document.querySelector(".filter-viewport")
-const searchInput = document.querySelector("#search")
+const filterViewport = document.querySelector(".filter-viewport");
+const searchInput = document.querySelector("#search");
 
 let page = 1;
 const pageSize = 9;
@@ -11,34 +11,111 @@ let pokemonList = [];
 let pokemonsData = [];
 
 const pokemonTypes = [
-  { name: "normal",   color: "#A8A77A", shadow: "0 4px 12px 0 rgba(168, 167, 122, 0.6)", isSelected: false },
-  { name: "fire",     color: "#EE8130", shadow: "0 4px 12px 0 rgba(238, 129, 48, 0.6)", isSelected: false },
-  { name: "electric", color: "#F7D02C", shadow: "0 4px 12px 0 rgba(247, 208, 44, 0.6)", isSelected: false },
-  { name: "ice",      color: "#96D9D6", shadow: "0 4px 12px 0 rgba(150, 217, 214, 0.6)", isSelected: false },
-  { name: "poison",   color: "#A33EA1", shadow: "0 4px 12px 0 rgba(163, 62, 161, 0.6)", isSelected: false },
-  { name: "bug",      color: "#A6B91A", shadow: "0 4px 12px 0 rgba(166, 185, 26, 0.6)", isSelected: false },
-  { name: "ghost",    color: "#735797", shadow: "0 4px 12px 0 rgba(115, 87, 151, 0.6)", isSelected: false },
-  { name: "water",    color: "#6390F0", shadow: "0 4px 12px 0 rgba(99, 144, 240, 0.6)", isSelected: false },
-  { name: "grass",    color: "#7AC74C", shadow: "0 4px 12px 0 rgba(122, 199, 76, 0.6)", isSelected: false },
-  { name: "fighting", color: "#C22E28", shadow: "0 4px 12px 0 rgba(194, 46, 40, 0.6)", isSelected: false },
-  { name: "ground",   color: "#E2BF65", shadow: "0 4px 12px 0 rgba(226, 191, 101, 0.6)", isSelected: false },
-  { name: "psychic",  color: "#F95587", shadow: "0 4px 12px 0 rgba(249, 85, 135, 0.6)", isSelected: false },
-  { name: "rock",     color: "#B6A136", shadow: "0 4px 12px 0 rgba(182, 161, 54, 0.6)", isSelected: false },
-  { name: "dragon",   color: "#6F35FC", shadow: "0 4px 12px 0 rgba(111, 53, 252, 0.6)", isSelected: false },
-  { name: "fairy",    color: "#D685AD", shadow: "0 4px 12px 0 rgba(214, 133, 173, 0.6)", isSelected: false }
-]
+  {
+    name: "normal",
+    color: "#A8A77A",
+    shadow: "0 4px 12px 0 rgba(168, 167, 122, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "fire",
+    color: "#EE8130",
+    shadow: "0 4px 12px 0 rgba(238, 129, 48, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "electric",
+    color: "#F7D02C",
+    shadow: "0 4px 12px 0 rgba(247, 208, 44, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "ice",
+    color: "#96D9D6",
+    shadow: "0 4px 12px 0 rgba(150, 217, 214, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "poison",
+    color: "#A33EA1",
+    shadow: "0 4px 12px 0 rgba(163, 62, 161, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "bug",
+    color: "#A6B91A",
+    shadow: "0 4px 12px 0 rgba(166, 185, 26, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "ghost",
+    color: "#735797",
+    shadow: "0 4px 12px 0 rgba(115, 87, 151, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "water",
+    color: "#6390F0",
+    shadow: "0 4px 12px 0 rgba(99, 144, 240, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "grass",
+    color: "#7AC74C",
+    shadow: "0 4px 12px 0 rgba(122, 199, 76, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "fighting",
+    color: "#C22E28",
+    shadow: "0 4px 12px 0 rgba(194, 46, 40, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "ground",
+    color: "#E2BF65",
+    shadow: "0 4px 12px 0 rgba(226, 191, 101, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "psychic",
+    color: "#F95587",
+    shadow: "0 4px 12px 0 rgba(249, 85, 135, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "rock",
+    color: "#B6A136",
+    shadow: "0 4px 12px 0 rgba(182, 161, 54, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "dragon",
+    color: "#6F35FC",
+    shadow: "0 4px 12px 0 rgba(111, 53, 252, 0.6)",
+    isSelected: false,
+  },
+  {
+    name: "fairy",
+    color: "#D685AD",
+    shadow: "0 4px 12px 0 rgba(214, 133, 173, 0.6)",
+    isSelected: false,
+  },
+];
 let selectedTypes = [];
-let searchText = ""
+let searchText = "";
 
-let favoriteIds = new Set(JSON.parse(localStorage.getItem("favoriteIds") || "[]"));
+let favoriteIds = new Set(
+  JSON.parse(localStorage.getItem("favoriteIds") || "[]")
+);
 
 //get search from user input
-searchInput.addEventListener("input", e => {
+searchInput.addEventListener("input", (e) => {
   searchText = e.target.value.trim().toLowerCase();
   page = 1;
-  console.log(searchText)
-  renderPage()
-})
+  console.log(searchText);
+  renderPage();
+});
 
 //get pokemons (returns name & url only)
 const fetchPokemons = async (limit, offset) => {
@@ -67,11 +144,11 @@ const fetchPokemon = async (url) => {
 //save all pokemons data in pokemonsData variable
 const getPokemonData = async () => {
   pokemonList = await fetchPokemons(151, 0);
-  for (let pokemon of pokemonList){
-    const thisPokemonData = await fetchPokemon(pokemon.url)
-    pokemonsData.push(thisPokemonData)
+  for (let pokemon of pokemonList) {
+    const thisPokemonData = await fetchPokemon(pokemon.url);
+    pokemonsData.push(thisPokemonData);
   }
-}
+};
 
 //get description text
 const fetchSpecies = async (id) => {
@@ -90,8 +167,8 @@ const goToNextPage = () => {
   nextBtn.textContent = "Next";
   nextBtn.classList.add("page-btn");
   nextBtn.addEventListener("click", async () => {
-    if (page >= 17){
-      return
+    if (page >= 17) {
+      return;
     }
     page++;
     await renderPage();
@@ -116,10 +193,10 @@ const goToPrevPage = () => {
 
 //helper to style filter pills
 const stylePill = (pill, type) => {
-      pill.style.backgroundColor = `${type.isSelected ? type.color : ''}`
-      pill.style.color = `${type.isSelected ? '#1E1E1E' : '#E5E5E5'}`
-      pill.style.borderColor = `${type.isSelected ? '' : type.color}`
-}
+  pill.style.backgroundColor = `${type.isSelected ? type.color : ""}`;
+  pill.style.color = `${type.isSelected ? "#1E1E1E" : "#E5E5E5"}`;
+  pill.style.borderColor = `${type.isSelected ? "" : type.color}`;
+};
 
 //helper to check if pokemon id is in favorites
 const isFav = (id) => favoriteIds.has(id);
@@ -135,40 +212,39 @@ const toggleFav = (id) => {
 const buildPage = async (pokemons) => {
   filterViewport.replaceChildren();
   //build filter pane
-  for (let type of pokemonTypes){
-    const filterPill = document.createElement("button")
-    filterPill.classList.add("filter-pill")
-    filterPill.textContent = `${type.name}`
+  for (let type of pokemonTypes) {
+    const filterPill = document.createElement("button");
+    filterPill.classList.add("filter-pill");
+    filterPill.textContent = `${type.name}`;
 
     //style pill
-    stylePill(filterPill,type);
-    
-    filterPill.addEventListener("click",() => {
+    stylePill(filterPill, type);
+
+    filterPill.addEventListener("click", () => {
       //deal with default = all categories selected
-      type.isSelected = !type.isSelected
+      type.isSelected = !type.isSelected;
 
       //style pill
-      stylePill(filterPill,type);
-      
+      stylePill(filterPill, type);
+
       for (let type of pokemonTypes) {
-      if(type.isSelected && !selectedTypes.includes(type.name)) {
-        //add
-        selectedTypes.push(type.name)
-      }  
-      else if(!type.isSelected && selectedTypes.includes(type.name)){
-            // remove
-          selectedTypes = selectedTypes.filter(typeName => typeName !== type.name) 
-      }    
-      //reset page
-      page = 1
-}
-renderPage()     
+        if (type.isSelected && !selectedTypes.includes(type.name)) {
+          //add
+          selectedTypes.push(type.name);
+        } else if (!type.isSelected && selectedTypes.includes(type.name)) {
+          // remove
+          selectedTypes = selectedTypes.filter(
+            (typeName) => typeName !== type.name
+          );
+        }
+        //reset page
+        page = 1;
+      }
+      renderPage();
+    });
 
-  })
-
-    filterViewport.append(filterPill)
-  }  
-
+    filterViewport.append(filterPill);
+  }
 
   // building the cards
   pokemonGrid.replaceChildren();
@@ -179,11 +255,12 @@ renderPage()
     card.classList.add("card");
     for (let type of pokemonTypes) {
       //card styling
-      if (type.name === pokemon.types[0].type.name){
-        card.style.borderColor = `${type.color}`
-        card.style.boxShadow = `${type.shadow}`
+      if (type.name === pokemon.types[0].type.name) {
+        card.style.borderColor = `${type.color}`;
+        card.style.boxShadow = `${type.shadow}`;
+      } else {
+        continue;
       }
-      else {continue}
     }
 
     const favWrapper = document.createElement("div");
@@ -195,12 +272,13 @@ renderPage()
     favImg.classList.add("fav-img");
 
     favImg.addEventListener("click", () => {
-
       toggleFav(pokemon.id);
-      favImg.src = isFav(pokemon.id) ? "./images/fav.svg" : "./images/unfav.svg";
+      favImg.src = isFav(pokemon.id)
+        ? "./images/fav.svg"
+        : "./images/unfav.svg";
 
       console.log([...favoriteIds]);
-    })
+    });
 
     favWrapper.append(favImg);
 
@@ -220,7 +298,7 @@ renderPage()
 
     pokemonGrid.append(card);
   }
-//   page navigation
+  //   page navigation
   pageBtnsWrapper.replaceChildren();
   const pageNum = document.createElement("p");
   pageNum.textContent = page;
@@ -231,8 +309,8 @@ renderPage()
 const getPage = (pokemons, page, pageSize = 9) => {
   const start = (page - 1) * pageSize;
   const end = start + pageSize;
-  return pokemons.slice(start, end)
-}
+  return pokemons.slice(start, end);
+};
 
 //duh
 const renderPage = async () => {
@@ -247,9 +325,10 @@ const renderPage = async () => {
   // const pokemonsOnThisPage = getPage(filteredPokemons, page, pageSize)
   // await buildPage(pokemonsOnThisPage);
 
-  const filteredPokemons = pokemonsData.filter(pokemon => {
+  const filteredPokemons = pokemonsData.filter((pokemon) => {
     const matchesType =
-      selectedTypes.length === 0 || selectedTypes.includes(pokemon.types[0].type.name);
+      selectedTypes.length === 0 ||
+      selectedTypes.includes(pokemon.types[0].type.name);
 
     const matchesSearch =
       !searchText || pokemon.name.toLowerCase().includes(searchText);
@@ -263,9 +342,8 @@ const renderPage = async () => {
 
 //RUN FIRST
 const init = async () => {
-await getPokemonData()
-await renderPage();
-}
+  await getPokemonData();
+  await renderPage();
+};
 
 init();
-
