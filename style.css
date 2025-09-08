@@ -271,6 +271,7 @@ main {
 .pokemon-grid {
   display: grid;
   width: 90%;
+  min-height: 920px;
   padding: 2.25rem;
   row-gap: 2.25rem;
   column-gap: 36px;
@@ -297,7 +298,7 @@ main {
   border-radius: 8px;
   border: 1px solid;
   background: var(--neutral-200);
-  
+
   aspect-ratio: 1.02/1;
   position: relative;
 }
@@ -326,12 +327,12 @@ main {
   align-self: stretch;
 }
 
-.filter-viewport{
+.filter-viewport {
   display: flex;
   flex-direction: row;
-align-items: flex-start;
-gap: 16px;
-align-self: stretch;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
 }
 
 .filter-pill {
@@ -347,6 +348,3 @@ align-self: stretch;
   color: var(--neutral-900); /* fallback for unselected text */
   transition: all 0.2s ease;
 }
-
-
-
